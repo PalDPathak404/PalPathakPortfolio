@@ -2,11 +2,11 @@ import React from 'react';
 import { Github, Linkedin, Youtube, Twitter, ArrowUp, Code2 } from 'lucide-react';
 
 const socialLinks = [
-  { icon: Github, href: '#', label: 'GitHub' },
-  { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
-  { icon: Twitter, href: '#', label: 'Twitter' },
-  { icon: Code2, href: '#', label: 'LeetCode' },
+{ icon: Github, href: 'https://github.com/paldpathak404', label: 'GitHub' },
+  { icon: Linkedin, href: 'http://www.linkedin.com/in/paldpathak/', label: 'LinkedIn' },
+  { icon: Code2, href: 'https://leetcode.com/u/paldpathak404/', label: 'LeetCode' },
+  { icon: Twitter, href: 'https://x.com/paldpathak', label: 'Twitter' },
+  { icon: Youtube, href: 'https://www.youtube.com/@PalDPathak', label: 'YouTube' }
 ];
 
 export const Footer = () => {

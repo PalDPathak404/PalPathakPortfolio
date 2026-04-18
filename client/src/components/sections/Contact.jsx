@@ -94,7 +94,7 @@ export const Contact = () => {
                                     </div>
                                     <div>
                                         <span className="block text-sm uppercase tracking-widest opacity-40 font-bold text-left">Email Me</span>
-                                        <span className="text-2xl font-display font-bold group-hover:text-primary transition-colors block text-left">{copied ? 'Copied!' : 'hello@dev.com'}</span>
+                                        <span className="text-2xl font-display font-bold group-hover:text-primary transition-colors block text-left">{copied ? 'Copied!' : 'palkumar.d.pathak.cg@gmail.com'}</span>
                                     </div>
                                 </button>
 

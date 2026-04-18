@@ -93,10 +93,10 @@ const GitHubContent = () => (
     {/* Stats Row */}
     <div className="grid grid-cols-4 gap-4">
       {[
-        { icon: BookOpen, value: '45+', label: 'Repos' },
-        { icon: Star, value: '120+', label: 'Stars' },
-        { icon: GitFork, value: '85+', label: 'Forks' },
-        { icon: Users, value: '200+', label: 'Followers' },
+        { icon: BookOpen, value: '30+', label: 'Repos' },
+        { icon: Star, value: '12+', label: 'Stars' },
+        { icon: GitFork, value: '15+', label: 'Forks' },
+        { icon: Users, value: '100+', label: 'Followers' },
       ].map((stat, i) => (
         <div key={i} className="text-center p-3 bg-black/[0.02] dark:bg-white/[0.02] rounded-xl">
           <stat.icon className="w-4 h-4 mx-auto mb-1 text-primary/70" />
@@ -289,24 +289,24 @@ export const Stats = () => {
       title: 'GitHub',
       icon: Github,
       bgColor: 'bg-black dark:bg-zinc-800',
-      username: '@viperscar404',
-      href: 'https://github.com/viperscar404',
+      username: '@paldpathak404',
+      href: 'https://github.com/paldpathak404',
       content: <GitHubContent />,
     },
     {
       title: 'LeetCode',
       icon: Code2,
       bgColor: 'bg-[#ffa116]',
-      username: '@viperscar404',
-      href: 'https://leetcode.com/u/viperscar404',
+      username: '@paldpathak404',
+      href: 'https://leetcode.com/u/paldpathak404',
       content: <LeetCodeContent />,
     },
     {
       title: 'LinkedIn',
       icon: Linkedin,
       bgColor: 'bg-[#0077b5]',
-      username: '/in/viperscar404',
-      href: 'https://linkedin.com/in/viperscar404',
+      username: '/in/paldpathak',
+      href: 'https://linkedin.com/in/paldpathak',
       content: <LinkedInContent />,
     },
   ];
