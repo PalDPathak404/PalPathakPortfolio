@@ -23,6 +23,10 @@ export default defineConfig(({ mode }) => {
       },
       dedupe: ['react', 'react-dom', 'framer-motion', 'motion'],
     },
+    build: {
+      outDir: path.resolve(__dirname, '../dist'),
+      emptyOutDir: true,
+    },
     server: {
       port: 3000,
       host: '0.0.0.0',
