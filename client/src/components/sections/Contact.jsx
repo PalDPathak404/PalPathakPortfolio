@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Mail, MapPin, Check, Loader2, MessageSquare, ArrowRight, Send, Sparkles } from 'lucide-react';
 import Lottie from 'lottie-react';
 import successAnimation from '../../assets/lottie/success.json';
+import emailjs from '@emailjs/browser';
 import { cn } from '../../lib/utils.js';
 
 export const Contact = () => {
@@ -14,12 +15,26 @@ export const Contact = () => {
         e.preventDefault();
         setStatus('loading');
 
+        const templateParams = {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            reply_to: formData.email,
+        };
+
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                templateParams,
+                import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+            );
+            
             setStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
         } catch (err) {
-            console.error(err);
+            console.error('EmailJS Error:', err);
             setStatus('error');
             setTimeout(() => setStatus('idle'), 3000);
         }
