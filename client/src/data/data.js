@@ -20,7 +20,7 @@ export const mockProjects = [
     category: 'personal',
     subCategory: 'Frontend',
     tags: ['HTML', 'CSS'],
-    thumbnail: 'https://drive.google.com/file/d/1Mvj4bduAR47oSGd-0IGZZlb7W7RRaYSs/view?usp=sharing',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1Mvj4bduAR47oSGd-0IGZZlb7W7RRaYSs',
     githubUrl: 'https://github.com/PalDPathak404/golem',
     liveUrl: 'https://golem-clone.vercel.app/',
     featured: true
@@ -33,7 +33,7 @@ export const mockProjects = [
     category: 'personal',
     subCategory: 'Frontend',
     tags: ['HTML', 'CSS'],
-    thumbnail: 'https://drive.google.com/file/d/1TkTkFwH_By92qLMReVtJj0ZEOqymwIAU/view?usp=sharing',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1TkTkFwH_By92qLMReVtJj0ZEOqymwIAU',
     githubUrl: 'https://github.com/PalDPathak404/gogunlocked',
     liveUrl: 'https://gog-unlocked.netlify.app/',
     featured: true
@@ -46,7 +46,7 @@ export const mockProjects = [
     category: 'personal',
     subCategory: 'Frontend',
     tags: ['HTML', 'CSS'],
-    thumbnail: 'https://drive.google.com/file/d/17w3pRfyTrxDCau9fAHxEXPeKqLF8N3qd/view?usp=sharing',
+    thumbnail: 'https://lh3.googleusercontent.com/d/17w3pRfyTrxDCau9fAHxEXPeKqLF8N3qd',
     githubUrl: 'https://github.com/PalDPathak404/ventureboard',
     liveUrl: 'https://venture-board.netlify.app/',
     featured: false
@@ -59,7 +59,7 @@ export const mockProjects = [
     category: 'personal',
     subCategory: 'Clone',
     tags: ['HTML', 'CSS'],
-    thumbnail: 'https://drive.google.com/file/d/1nfq7Ob_n7ZXHbnlRemvlcKmh0LTzOO_K/view?usp=sharing',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1nfq7Ob_n7ZXHbnlRemvlcKmh0LTzOO_K',
     githubUrl: 'https://github.com/PalDPathak404/bigbasket',
     liveUrl: 'https://biggestbasket.vercel.app/',
     featured: false
@@ -72,7 +72,7 @@ export const mockProjects = [
     category: 'personal',
     subCategory: 'Clone',
     tags: ['HTML', 'CSS'],
-    thumbnail: 'https://drive.google.com/file/d/1U9vXvFFBEt8H_zULlSFz3Bw580pjxLQQ/view?usp=sharing',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1U9vXvFFBEt8H_zULlSFz3Bw580pjxLQQ',
     githubUrl: 'https://github.com/PalDPathak404/growfitter',
     liveUrl: 'https://growfitter.netlify.app',
     featured: false
@@ -107,14 +107,14 @@ export const mockSkills = [
 ];
 
 export const mockCertificates = [
-  { _id: 'c1', title: 'GenAI Job Simulation', issuer: 'Forage', issueDate: 'Apr 2024', category: 'educational', imageUrl: 'https://drive.google.com/file/d/1_p0ap82ttWRsf599xiuWU1VP1nFoHkI5/view?usp=sharing', description: 'Completed a 5-day virtual work experience with Amazon, simulating the role of a Generative AI Engineer. Gained hands-on exposure to prompt engineering, fine-tuning large language models, and building AI-powered applications using Amazon Bedrock and SageMaker.' },
-  { _id: 'c2', title: 'Frontend Developement', issuer: 'HRCalcy', issueDate: 'Mar 2026', category: 'educational', imageUrl: 'https://drive.google.com/file/d/16rQrVzb1TC3wUVYciGYRIGcuT_J8boyQ/view?usp=sharing', description: 'HRCalcy Frontend Development' },
-  { _id: 'c3', title: 'Associate Merchant Job Simulation', issuer: 'Forage', issueDate: 'Apr 2026', category: 'educational', imageUrl: 'https://drive.google.com/file/d/1mlKK8D6k0OivuSw_n32IPx3G-1bOuy4L/view?usp=sharing', description: 'Completed a 5-day virtual work experience with Amazon, simulating the role of an Associate Merchant. Gained hands-on exposure to product management, market research, and building AI-powered applications using Amazon Bedrock and SageMaker.' },
-  { _id: 'c4', title: 'Participant', issuer: 'IISc Bangalore', issueDate: 'Mar 2026', category: 'hackathon', imageUrl: 'https://drive.google.com/file/d/1ko-qMkIMN8MEbNhey6IF5pTGOoPi6SPY/view?usp=sharing', description: 'ArtPark CodeForge Hackathon organized by IISc Bangalore' },
-  { _id: 'c5', title: 'Participant', issuer: 'IIIT Surat', issueDate: 'Mar 2026', category: 'hackathon', imageUrl: 'https://drive.google.com/file/d/13idSxXO7w2LfdTtstWwkj3Md_DfLwvzZ/view?usp=sharing', description: 'DevHeat Hackathon organized by IIIT Surat' },
-  { _id: 'c6', title: '2nd Runner Up', issuer: 'SVNIT Surat', issueDate: 'Feb 2026', category: 'hackathon', imageUrl: 'https://drive.google.com/file/d/1QSII3KSsjQe1B297dngp-fWg7Rcj4Sqs/view?usp=sharing', description: 'Hack The Tank 3.0 Hackathon organized by Google Developers Group, SVNIT Surat' },
-  { _id: 'c7', title: 'Participant', issuer: 'IIIT Surat', issueDate: 'Feb 2026', category: 'hackathon', imageUrl: 'https://drive.google.com/file/d/1sIauL9fHgPwOeb3SUzAnkPc7Au0p--kV/view?usp=sharing', description: 'TrustAI Ideathon Hackathon organized by IIIT Surat' },
-  { _id: 'c8', title: 'Participant', issuer: 'DA-IICT Gandhinagar', issueDate: 'Feb 2026', category: 'hackathon', imageUrl: 'https://drive.google.com/file/d/13Cjc8sbIOb1yEmP1PKZrmizvc6TuHPNI/view?usp=sharing', description: 'InnovAItion Hackathon organized by DA-IICT Gandhinagar' }
+  { _id: 'c1', title: 'GenAI Job Simulation', issuer: 'Forage', issueDate: 'Apr 2024', category: 'educational', imageUrl: 'https://lh3.googleusercontent.com/d/1_p0ap82ttWRsf599xiuWU1VP1nFoHkI5', description: 'Completed a 5-day virtual work experience with Amazon, simulating the role of a Generative AI Engineer. Gained hands-on exposure to prompt engineering, fine-tuning large language models, and building AI-powered applications using Amazon Bedrock and SageMaker.' },
+  { _id: 'c2', title: 'Frontend Developement', issuer: 'HRCalcy', issueDate: 'Mar 2026', category: 'educational', imageUrl: 'https://lh3.googleusercontent.com/d/16rQrVzb1TC3wUVYciGYRIGcuT_J8boyQ', description: 'HRCalcy Frontend Development' },
+  { _id: 'c3', title: 'Associate Merchant Job Simulation', issuer: 'Forage', issueDate: 'Apr 2026', category: 'educational', imageUrl: 'https://lh3.googleusercontent.com/d/1mlKK8D6k0OivuSw_n32IPx3G-1bOuy4L', description: 'Completed a 5-day virtual work experience with Amazon, simulating the role of an Associate Merchant. Gained hands-on exposure to product management, market research, and building AI-powered applications using Amazon Bedrock and SageMaker.' },
+  { _id: 'c4', title: 'Participant', issuer: 'IISc Bangalore', issueDate: 'Mar 2026', category: 'hackathon', imageUrl: 'https://lh3.googleusercontent.com/d/1ko-qMkIMN8MEbNhey6IF5pTGOoPi6SPY', description: 'ArtPark CodeForge Hackathon organized by IISc Bangalore' },
+  { _id: 'c5', title: 'Participant', issuer: 'IIIT Surat', issueDate: 'Mar 2026', category: 'hackathon', imageUrl: 'https://lh3.googleusercontent.com/d/13idSxXO7w2LfdTtstWwkj3Md_DfLwvzZ', description: 'DevHeat Hackathon organized by IIIT Surat' },
+  { _id: 'c6', title: '2nd Runner Up', issuer: 'SVNIT Surat', issueDate: 'Feb 2026', category: 'hackathon', imageUrl: 'https://lh3.googleusercontent.com/d/1QSII3KSsjQe1B297dngp-fWg7Rcj4Sqs', description: 'Hack The Tank 3.0 Hackathon organized by Google Developers Group, SVNIT Surat' },
+  { _id: 'c7', title: 'Participant', issuer: 'IIIT Surat', issueDate: 'Feb 2026', category: 'hackathon', imageUrl: 'https://lh3.googleusercontent.com/d/1sIauL9fHgPwOeb3SUzAnkPc7Au0p--kV', description: 'TrustAI Ideathon Hackathon organized by IIIT Surat' },
+  { _id: 'c8', title: 'Participant', issuer: 'DA-IICT Gandhinagar', issueDate: 'Feb 2026', category: 'hackathon', imageUrl: 'https://lh3.googleusercontent.com/d/13Cjc8sbIOb1yEmP1PKZrmizvc6TuHPNI', description: 'InnovAItion Hackathon organized by DA-IICT Gandhinagar' }
 ];
 
 export const mockHackathons = [
@@ -134,12 +134,12 @@ export const mockHackathons = [
       'Multi-signature approval for transfers over $10,000',
     ],
     images: [
-      'https://drive.google.com/file/d/1r1lSEflvQC3nYdt3fr0cj4HACrHapdai/view?usp=sharing',
-      'https://drive.google.com/file/d/10pT_PIQI9vSzL7MvIMzdKcpaBtR0Vf27/view?usp=sharing',
-      'https://drive.google.com/file/d/1_s4gUmLgPssy9rWNVdrh4SygFY_zGdCg/view?usp=sharing',
-      'https://drive.google.com/file/d/1WIYLk9mNfNAZhZ6qONsgrZnnSVcvCLBi/view?usp=sharing',
-      'https://drive.google.com/file/d/1-OGbRQ9F_mTeQ-TDLDd0TVbqVyiBvyIn/view?usp=sharing',
-      'https://drive.google.com/file/d/1pMsjru9R28VXrv1nUb8i7qoBThGE5vSE/view?usp=sharing'
+      'https://lh3.googleusercontent.com/d/1r1lSEflvQC3nYdt3fr0cj4HACrHapdai',
+      'https://lh3.googleusercontent.com/d/10pT_PIQI9vSzL7MvIMzdKcpaBtR0Vf27',
+      'https://lh3.googleusercontent.com/d/1_s4gUmLgPssy9rWNVdrh4SygFY_zGdCg',
+      'https://lh3.googleusercontent.com/d/1WIYLk9mNfNAZhZ6qONsgrZnnSVcvCLBi',
+      'https://lh3.googleusercontent.com/d/1-OGbRQ9F_mTeQ-TDLDd0TVbqVyiBvyIn',
+      'https://lh3.googleusercontent.com/d/1pMsjru9R28VXrv1nUb8i7qoBThGE5vSE'
     ],
     teamSize: 3,
     repoUrl: 'https://github.com/paldpathak404/returniq',
@@ -163,10 +163,10 @@ export const mockHackathons = [
       'Achieved 95% accuracy in emergency call classification'
     ],
     images: [
-      'https://drive.google.com/file/d/1t8gKPAS9zqKeVMHLf7QcVjsQyjJFvJGt/view?usp=sharing',
-      'https://drive.google.com/file/d/1n_-aIsAnlAbuCRUxeFXiPLyZed_eqSO1/view?usp=sharing',
-      'https://drive.google.com/file/d/1LAfbJzvJn0jAC8X6A-Y0ll2syUdAU4vx/view?usp=sharing',
-      'https://drive.google.com/file/d/1nScuZMZtUytMV1vsHbPdWFy5Canxyf8P/view?usp=sharing',
+      'https://lh3.googleusercontent.com/d/1t8gKPAS9zqKeVMHLf7QcVjsQyjJFvJGt',
+      'https://lh3.googleusercontent.com/d/1n_-aIsAnlAbuCRUxeFXiPLyZed_eqSO1',
+      'https://lh3.googleusercontent.com/d/1LAfbJzvJn0jAC8X6A-Y0ll2syUdAU4vx',
+      'https://lh3.googleusercontent.com/d/1nScuZMZtUytMV1vsHbPdWFy5Canxyf8P',
     ],
     teamSize: 4,
     repoUrl: 'https://github.com/paldpathak404/rapidresq'

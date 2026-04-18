@@ -6,7 +6,7 @@ const mockFigma = [
   { 
     id: 1, 
     title: 'ElectroSell- A Figma Creation', 
-    image: 'https://drive.google.com/uc?export=view&id=1d7tvjvHOP2NjfcANIUsONUdoCHGasePn', 
+    image: 'https://lh3.googleusercontent.com/d/1d7tvjvHOP2NjfcANIUsONUdoCHGasePn', 
     link: 'https://www.figma.com/proto/bKRdU5q74OYXJxaAXLCljD/Work?page-id=86%3A6&node-id=184-18864&p=f&viewport=212%2C236%2C0.1&t=uzj8H5gE9h70KDUZ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=91%3A13' 
   }
 ];
