@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "node app.js",
-    "build": "vite build client --outDir client/dist",
-    "vercel-build": "vite build client --outDir client/dist",
+    "build": "vite build client --outDir dist",
+    "vercel-build": "vite build client --outDir dist",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "echo 'Skipping linting for JS conversion'"
