@@ -9,7 +9,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
-const ResumeModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) => {
+const ResumeModal = ({ isOpen, onClose }) => {
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const resumeUrl = '/resume.pdf'; // Placeholder path
 
