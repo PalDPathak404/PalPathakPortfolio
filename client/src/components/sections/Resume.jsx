@@ -44,12 +44,13 @@ const ResumeModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void
 
                  <div className="flex items-center space-x-4">
                     <a 
-                       href={resumeUrl} 
-                       download="John_Doe_Resume.pdf"
+                       href="https://drive.google.com/file/d/1y0PLuzB7oV0cojpOvJnKF85wL_LyipvM/view?usp=sharing" 
+                       target="_blank"
+                       rel="noreferrer"
                        className="flex items-center space-x-2 px-6 py-2 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-full hover:shadow-lg hover:shadow-primary/20 transition-all"
                     >
                        <Download className="w-4 h-4" />
-                       <span>Download PDF</span>
+                       <span>Download / View</span>
                     </a>
                     <button onClick={onClose} className="p-3 hover:bg-black/5 dark:hover:bg-white/5 rounded-full">
                        <X className="w-6 h-6" />
@@ -59,13 +60,13 @@ const ResumeModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void
 
               {/* PDF Viewer */}
               <div className="flex-1 overflow-hidden bg-black/5 dark:bg-white/5 p-4 md:p-12">
-                 <div className="h-full w-full bg-white shadow-2xl overflow-auto custom-scrollbar flex items-center justify-center text-black">
-                     <p className="opacity-50 italic">PDF Viewer active in production environment. [Resume Preview Mode]</p>
-                     {/* In a real app we'd use:
-                     <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
-                        <Viewer fileUrl={resumeUrl} plugins={[defaultLayoutPluginInstance]} />
-                     </Worker>
-                     */}
+                 <div className="h-full w-full bg-white shadow-2xl overflow-hidden rounded-t-xl flex items-center justify-center text-black">
+                     <iframe 
+                       src="https://drive.google.com/file/d/1y0PLuzB7oV0cojpOvJnKF85wL_LyipvM/preview" 
+                       title="Resume PDF Viewer"
+                       className="w-full h-full border-none"
+                       allow="autoplay"
+                     />
                  </div>
               </div>
            </motion.div>

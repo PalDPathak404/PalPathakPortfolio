@@ -11,6 +11,7 @@ import { Projects } from './components/sections/Projects.jsx';
 import { Figma } from './components/sections/Figma.jsx';
 import { Hackathons } from './components/sections/Hackathons.jsx';
 import { Education } from './components/sections/Education.jsx';
+import { Resume } from './components/sections/Resume.jsx';
 import { Stats } from './components/sections/Stats.jsx';
 import { Contact } from './components/sections/Contact.jsx';
 import { Footer } from './components/layout/Footer.jsx';
@@ -82,6 +83,7 @@ const Layout = () => {
             <Figma />
             <Hackathons />
             <Education />
+            <Resume />
             <Stats />
             <Contact />
           </div>

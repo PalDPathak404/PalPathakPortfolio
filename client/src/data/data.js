@@ -36,6 +36,7 @@ export const mockProjects = [
     tags: ['Solidity', 'Web3.js', 'Next.js', 'Tailwind'],
     thumbnail: 'https://picsum.photos/seed/chronos/1200/800',
     githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: true
   },
   {
@@ -47,6 +48,8 @@ export const mockProjects = [
     subCategory: 'Game',
     tags: ['TypeScript', 'Canvas', 'Game Loop'],
     thumbnail: 'https://picsum.photos/seed/shadow/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   },
   {
@@ -58,6 +61,8 @@ export const mockProjects = [
     subCategory: 'Clone',
     tags: ['React', 'Framer Motion', 'Lottie'],
     thumbnail: 'https://picsum.photos/seed/pixel/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   },
   {
@@ -69,6 +74,8 @@ export const mockProjects = [
     subCategory: 'Full Stack',
     tags: ['GraphQL', 'Apollo', 'Recharts'],
     thumbnail: 'https://picsum.photos/seed/defi/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   },
   {
@@ -80,6 +87,8 @@ export const mockProjects = [
     subCategory: 'Full Stack',
     tags: ['Python', 'Django', 'Docker'],
     thumbnail: 'https://picsum.photos/seed/hack/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   },
   {
@@ -91,6 +100,8 @@ export const mockProjects = [
     subCategory: 'Full Stack',
     tags: ['Ethereum', 'React', 'IPFS'],
     thumbnail: 'https://picsum.photos/seed/educhain/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   },
   {
@@ -102,6 +113,8 @@ export const mockProjects = [
     subCategory: 'Full Stack',
     tags: ['Yjs', 'Monaco Editor', 'OpenAI'],
     thumbnail: 'https://picsum.photos/seed/swift/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   },
   {
@@ -113,6 +126,8 @@ export const mockProjects = [
     subCategory: 'Full Stack',
     tags: ['React Native', 'Firebase', 'Express'],
     thumbnail: 'https://picsum.photos/seed/health/1200/800',
+    githubUrl: 'https://github.com/placeholder',
+    liveUrl: 'https://placeholder.vercel.app',
     featured: false
   }
 ];
