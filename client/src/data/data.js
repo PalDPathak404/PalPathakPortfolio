@@ -100,7 +100,7 @@ export const mockSkills = [
   { _id: 's4', name: 'MongoDB', category: 'Databases', icon: 'Database', level: 75, color: '#4db33d', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
   { _id: 's5', name: 'Three.js', category: 'Frontend', icon: 'Box', level: 70, color: '#049EF4', logoUrl: 'https://raw.githubusercontent.com/mrdoob/three.js/master/files/icon.svg' },
   { _id: 's6', name: 'Tailwind CSS', category: 'Frontend', icon: 'Wind', level: 95, color: '#38b2ac', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
-  { _id: 's7', name: 'Express', category: 'Backend', icon: 'Zap', level: 85, color: '#f27d26', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+  { _id: 's7', name: 'Express', category: 'Backend', icon: 'Zap', level: 85, color: '#0071E3', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
   { _id: 's8', name: 'Git', category: 'Tools', icon: 'Github', level: 90, color: '#f34f29', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
   { _id: 's9', name: 'Docker', category: 'DevOps', icon: 'Container', level: 60, color: '#2496ed', logoUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
   { _id: 's10', name: 'Framer Motion', category: 'Frontend', icon: 'Activity', level: 85, color: '#ff0055', logoUrl: 'https://pagepro.co/blog/wp-content/uploads/2020/03/framer-motion.png' }

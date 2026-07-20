@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 
 import { Navbar } from './components/layout/Navbar.jsx';
 import { Hero } from './components/sections/Hero.jsx';
+import { Startups } from './components/sections/Startups.jsx';
 import { About } from './components/sections/About.jsx';
 import { Skills } from './components/sections/Skills.jsx';
 import { Projects } from './components/sections/Projects.jsx';
@@ -77,6 +78,7 @@ const Layout = () => {
           <Navbar />
           <div className="space-y-0">
             <Hero />
+            <Startups />
             <About />
             <Skills />
             <Projects />

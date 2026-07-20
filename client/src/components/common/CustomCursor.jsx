@@ -1,26 +1,24 @@
-import { useEffect, useRef, useState } from 'react';
-
-const lerp = (start, end, factor) => {
-  return start + (end - start) * factor;
-};
+import { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'motion/react';
 
 export const CustomCursor = () => {
-  const dotRef = useRef(null);
-  const ringRef = useRef(null);
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
   
-  const mousePos = useRef({ x: 0, y: 0 });
-  const ringPos = useRef({ x: 0, y: 0 });
+  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
+  const cursorXSpring = useSpring(cursorX, springConfig);
+  const cursorYSpring = useSpring(cursorY, springConfig);
+
   const [cursorType, setCursorType] = useState('default');
   const [techLogo, setTechLogo] = useState(null);
 
   useEffect(() => {
+    // Only apply on desktop devices that support hover
+    if (typeof window === 'undefined' || !window.matchMedia('(hover: hover)').matches) return;
+
     const onMouseMove = (e) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      
-      // Update dot immediately
-      if (dotRef.current) {
-        dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-      }
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
 
       // Context detection
       const target = e.target;
@@ -55,89 +53,99 @@ export const CustomCursor = () => {
           const x = (e.clientX - centerX) * strength;
           const y = (e.clientY - centerY) * strength;
           magneticElement.style.transform = `translate(${x}px, ${y}px)`;
-          
-          if (dotRef.current) {
-             const dotX = lerp(e.clientX, centerX, 0.2);
-             const dotY = lerp(e.clientY, centerY, 0.2);
-             dotRef.current.style.transform = `translate(${dotX}px, ${dotY}px)`;
-          }
         } else {
           magneticElement.style.transform = 'translate(0, 0)';
         }
       }
     };
 
-    const animate = () => {
-      ringPos.current.x = lerp(ringPos.current.x, mousePos.current.x, 0.15);
-      ringPos.current.y = lerp(ringPos.current.y, mousePos.current.y, 0.15);
-
-      if (ringRef.current) {
-        ringRef.current.style.transform = `translate(${ringPos.current.x}px, ${ringPos.current.y}px)`;
-      }
-
-      requestAnimationFrame(animate);
-    };
-
     window.addEventListener('mousemove', onMouseMove);
-    const animationId = requestAnimationFrame(animate);
-
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
-      cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [cursorX, cursorY]);
 
   // Hide on touch devices
   if (typeof window !== 'undefined' && 'ontouchstart' in window) return null;
 
   const getRingClasses = () => {
-    const base = 'fixed top-0 left-0 rounded-full pointer-events-none z-[300] -translate-x-1/2 -translate-y-1/2 transition-[width,height,background-color,border-radius,border-color] duration-300 ease-out flex items-center justify-center overflow-hidden';
+    const base = 'rounded-full pointer-events-none transition-[width,height,background-color,backdrop-filter,border-color,border-radius] duration-300 ease-out flex items-center justify-center overflow-hidden';
     
     switch (cursorType) {
       case 'pointer':
-        return `${base} w-14 h-14 border-2 border-primary bg-primary/10`;
+        return `${base} w-12 h-12 bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/5 dark:border-white/10 scale-150`;
       case 'view':
-        return `${base} w-24 h-24 border-2 border-primary bg-primary/20`;
+        return `${base} w-24 h-24 bg-black/30 dark:bg-white/30 backdrop-blur-xl border border-black/20 dark:border-white/30 scale-110`;
       case 'drag':
-        return `${base} w-20 h-20 border-2 border-primary bg-primary/20`;
+        return `${base} w-16 h-16 bg-black/10 dark:bg-white/10 backdrop-blur-md border border-black/10 dark:border-white/10`;
       case 'tech':
-        // No background, no border — just the logo with a subtle dark backdrop
-        return `${base} w-16 h-16 border-0 bg-black/80 dark:bg-black/90 backdrop-blur-sm shadow-lg shadow-primary/20`;
+        return `${base} w-24 h-24 bg-white/50 dark:bg-black/50 backdrop-blur-xl shadow-2xl border border-black/10 dark:border-white/20`;
       case 'text':
-        return `${base} w-6 h-6 border-2 border-primary`;
+        return `${base} w-6 h-6 border border-black/20 dark:border-white/20 opacity-50`;
       default:
-        return `${base} w-10 h-10 border-2 border-primary`;
+        return `${base} w-8 h-8 border border-black/20 dark:border-white/20 backdrop-blur-sm`;
     }
   };
 
   return (
     <>
       {/* Small Dot */}
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-primary rounded-full pointer-events-none z-[301] -translate-x-1/2 -translate-y-1/2 mix-blend-difference transition-transform duration-100 ease-out"
-        style={{ scale: cursorType === 'text' ? 0.5 : 1 }}
-      />
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[301]"
+        style={{ x: cursorX, y: cursorY }}
+      >
+        <motion.div
+          className="w-2 h-2 bg-black dark:bg-white rounded-full transition-transform duration-100 ease-out"
+          style={{ 
+            x: "-50%",
+            y: "-50%",
+            scale: cursorType === 'text' ? 0.5 : (cursorType === 'pointer' ? 0 : 1), 
+            opacity: cursorType === 'pointer' ? 0 : 1 
+          }}
+        />
+      </motion.div>
       
       {/* Larger Ring */}
-      <div
-        ref={ringRef}
-        className={getRingClasses()}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[300]"
+        style={{ x: cursorXSpring, y: cursorYSpring }}
       >
-        {cursorType !== 'tech' && (
-          <div className="absolute inset-0 border border-primary/20 animate-[spin_4s_linear_infinite] rounded-full" />
-        )}
-        {cursorType === 'view' && <span className="text-[10px] font-bold text-primary tracking-widest uppercase">VIEW</span>}
-        {cursorType === 'drag' && <span className="text-[10px] font-bold text-primary tracking-widest uppercase">DRAG</span>}
-        {cursorType === 'tech' && techLogo && (
-          <img 
-            src={techLogo} 
-            alt="Tech Icon" 
-            className="w-10 h-10 object-contain p-1 rounded-md drop-shadow-[0_0_8px_rgba(242,125,38,0.4)]" 
-            style={{ filter: 'brightness(1.2)' }}
-          />
-        )}
-      </div>
+        <motion.div
+          className={getRingClasses()}
+          style={{ 
+            x: "-50%",
+            y: "-50%"
+          }}
+        >
+          {cursorType === 'view' && (
+            <motion.span 
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-[10px] font-bold text-black dark:text-white tracking-[0.3em] uppercase"
+            >
+              VIEW
+            </motion.span>
+          )}
+          {cursorType === 'drag' && (
+            <motion.span 
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-[10px] font-bold text-black dark:text-white tracking-[0.3em] uppercase"
+            >
+              DRAG
+            </motion.span>
+          )}
+          {cursorType === 'tech' && techLogo && (
+            <motion.img 
+              initial={{ scale: 0, rotate: -45 }}
+              animate={{ scale: 1, rotate: 0 }}
+              src={techLogo} 
+              alt="Tech Icon" 
+              className="w-12 h-12 object-contain p-1 rounded-md" 
+            />
+          )}
+        </motion.div>
+      </motion.div>
     </>
   );
 };
