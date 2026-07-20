@@ -398,7 +398,7 @@ export const Startups = () => {
                 </div>
               ) : (
                 <>
-                  {/* UPPER HALF: Simulated Real-Time B2B Dashboard */} */}
+                  {/* UPPER HALF: Simulated Real-Time B2B Dashboard */}
               <div className="bg-black/10 dark:bg-white/5 p-4 rounded-2xl border border-white/5 mb-6">
                 
                 {/* Stats row (similar to screenshot) */}

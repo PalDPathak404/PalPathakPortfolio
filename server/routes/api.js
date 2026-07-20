@@ -88,9 +88,11 @@ router.get('/stats/github', async (req, res) => {
       topRepos
     };
     githubCacheTime = Date.now();
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
     res.json(githubCache);
   } catch (err) {
     console.log('GitHub API error, using fallback data:', err.message);
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
     res.json(fallbackGitHubStats);
   }
 });
@@ -142,20 +144,22 @@ router.get('/stats/leetcode', async (req, res) => {
       easyTotal: 800, mediumTotal: 1600, hardTotal: 700
     };
     leetcodeCacheTime = Date.now();
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
     res.json(leetcodeCache);
   } catch (err) {
     console.log('LeetCode API error, using fallback data:', err.message);
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate');
     res.json(fallbackLeetCodeStats);
   }
 });
 
-// Mock LinkedIn API to simulate live fetch
+// Mock LinkedIn API to simulate live fetch (LinkedIn has no free public API)
 router.get('/stats/linkedin', async (req, res) => {
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 800));
+  // We can't scrape LinkedIn on Vercel without getting blocked, so we use static data
+  res.setHeader('Cache-Control', 's-maxage=86400');
   res.json({
-    connections: '2,500+',
-    impressions: '12K+',
+    connections: '500+',
+    impressions: '10K+',
     endorsements: [
       { skill: 'Full-Stack Development', count: 48 },
       { skill: 'React / Next.js', count: 42 },
