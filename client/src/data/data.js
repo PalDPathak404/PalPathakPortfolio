@@ -141,6 +141,20 @@ export const projectsData = [
     featured: false
   },
   {
+    _id: 'p13',
+    title: 'Smart Field Survey & Inspection App',
+    description: 'A React Native and Expo application designed for efficient field data collection. Features survey creation, camera integration, live GPS location, contact management, clipboard utilities, and survey history, all within a clean, modern mobile interface powered by native Expo APIs.',
+    longDescription: 'A full-featured mobile application built with React Native and Expo that streamlines field surveys and inspection workflows. The app leverages native device capabilities including Camera, Location, Contacts, and Clipboard APIs to enable efficient on-site data collection. It features survey creation, photo capture, GPS tagging, contact management, survey previews, searchable history, reusable components, and a modern navigation system powered by Expo Router with Bottom Tabs and Drawer Navigation. Designed with a responsive UI and scalable architecture, the project demonstrates practical integration of multiple native mobile APIs into a cohesive real-world application.',
+    category: 'personal',
+    subCategory: 'Apps',
+    tags: ['React Native', 'Expo', 'Mobile', 'Camera', 'GPS'],
+    thumbnail: 'https://img.youtube.com/vi/CS8kprowtAI/maxresdefault.jpg',
+    githubUrl: 'https://github.com/paldpathak404/smart-field-survey-app',
+    youtubeId: 'CS8kprowtAI',
+    youtubeUrl: 'https://youtu.be/CS8kprowtAI?si=nL2m9q1986agAd-5',
+    featured: true
+  },
+  {
     _id: 'lc1',
     title: 'Count Integers With Even Digit Sum | Most Optimised Solution | LeetCode 2180',
     description: 'Detailed explanation and optimal solution for LeetCode problem 2180 Count Integers With Even Digit Sum.',
