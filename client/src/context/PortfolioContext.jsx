@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { mockProjects, mockSkills, mockCertificates, mockHackathons, mockAchievements, mockEducation } from '../data/data.js';
+import { projectsData, skillsData, certificatesData, hackathonsData, achievementsData, educationData } from '../data/data.js';
 
 const PortfolioContext = createContext(undefined);
 
@@ -13,12 +13,12 @@ export const PortfolioProvider = ({ children }) => {
   const [activeCertId, setActiveCertId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [projects] = useState(mockProjects);
-  const [skills] = useState(mockSkills);
-  const [certificates] = useState(mockCertificates);
-  const [hackathons] = useState(mockHackathons);
-  const [achievements] = useState(mockAchievements);
-  const [education] = useState(mockEducation);
+  const [projects] = useState(projectsData);
+  const [skills] = useState(skillsData);
+  const [certificates] = useState(certificatesData);
+  const [hackathons] = useState(hackathonsData);
+  const [achievements] = useState(achievementsData);
+  const [education] = useState(educationData);
 
   useEffect(() => {
     const root = window.document.documentElement;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { usePortfolio } from '../../context/PortfolioContext.jsx';
-import { Github, ExternalLink, X, ChevronLeft, ChevronRight, Play, Sparkles, Folder, Maximize, Minimize } from 'lucide-react';
+import { Github, ExternalLink, X, ChevronLeft, ChevronRight, Play, Sparkles, Folder, Maximize, Minimize, Youtube } from 'lucide-react';
 import { cn } from '../../lib/utils.js';
 
 const ProjectModal = ({ project, onClose, onPrev, onNext }) => {
@@ -163,17 +163,29 @@ const ProjectModal = ({ project, onClose, onPrev, onNext }) => {
           </div>
 
           {/* CTA Buttons footer */}
-          <div className="grid grid-cols-2 gap-4 border-t border-black/10 dark:border-white/10 pt-6">
+          <div className="flex flex-wrap gap-4 border-t border-black/10 dark:border-white/10 pt-6">
             {project.githubUrl && (
               <a 
                 href={project.githubUrl} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="flex items-center justify-center gap-2 py-3.5 bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/15 text-black dark:text-white font-bold uppercase text-[9px] tracking-widest rounded-xl transition-all cursor-none"
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/15 text-black dark:text-white font-bold uppercase text-[9px] tracking-widest rounded-xl transition-all cursor-none min-w-[120px]"
                 data-cursor="pointer"
               >
                 <Github className="w-4 h-4" />
                 <span>Repository</span>
+              </a>
+            )}
+            {project.youtubeUrl && (
+              <a 
+                href={project.youtubeUrl} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-[#FF0000]/10 hover:bg-[#FF0000]/20 text-[#FF0000] font-bold uppercase text-[9px] tracking-widest rounded-xl transition-all cursor-none min-w-[120px]"
+                data-cursor="pointer"
+              >
+                <Youtube className="w-4 h-4" />
+                <span>Video</span>
               </a>
             )}
             {project.liveUrl && (
@@ -181,7 +193,7 @@ const ProjectModal = ({ project, onClose, onPrev, onNext }) => {
                 href={project.liveUrl} 
                 target="_blank" 
                 rel="noreferrer" 
-                className="flex items-center justify-center gap-2 py-3.5 bg-primary hover:bg-primary/95 text-white font-bold uppercase text-[9px] tracking-widest rounded-xl transition-all shadow-lg shadow-primary/20 cursor-none"
+                className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-primary hover:bg-primary/95 text-white font-bold uppercase text-[9px] tracking-widest rounded-xl transition-all shadow-lg shadow-primary/20 cursor-none min-w-[120px]"
                 data-cursor="pointer"
               >
                 <ExternalLink className="w-4 h-4" />
@@ -288,6 +300,18 @@ const ProjectCard = ({ project, onClick }) => {
                    <Github className="w-4 h-4" />
                  </a>
                )}
+               {project.youtubeUrl && (
+                 <a 
+                   href={project.youtubeUrl} 
+                   target="_blank" 
+                   rel="noreferrer"
+                   className="p-1 hover:text-[#FF0000] text-black/50 dark:text-white/50 transition-colors cursor-none"
+                   onClick={(e) => e.stopPropagation()}
+                   data-cursor="pointer"
+                 >
+                   <Youtube className="w-4 h-4" />
+                 </a>
+               )}
                {project.liveUrl && (
                  <a 
                    href={project.liveUrl} 
@@ -331,10 +355,15 @@ const ProjectCard = ({ project, onClick }) => {
 export const Projects = () => {
   const { projects } = usePortfolio();
   const [activeCategory, setActiveCategory] = useState('personal');
+  const [activeSubCategory, setActiveSubCategory] = useState('Frontend Clones');
   const [visibleCount, setVisibleCount] = useState(3);
   const [selectedProjectId, setSelectedProjectId] = useState(null);
 
-  const filteredProjects = projects.filter(p => p.category === activeCategory);
+  const filteredProjects = projects.filter(p => {
+    if (p.category !== activeCategory) return false;
+    if (activeCategory === 'personal' && p.subCategory !== activeSubCategory) return false;
+    return true;
+  });
   
   const selectedProject = projects.find(p => p._id === selectedProjectId);
   const selectedIndex = filteredProjects.findIndex(p => p._id === selectedProjectId);
@@ -358,7 +387,7 @@ export const Projects = () => {
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Heading Theater */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
            <motion.div
              initial={{ opacity: 0, y: 15 }}
              whileInView={{ opacity: 1, y: 0 }}
@@ -379,8 +408,8 @@ export const Projects = () => {
            </motion.h2>
 
            {/* Elegant Glass Tabs */}
-           <div className="inline-flex bg-black/5 dark:bg-white/5 p-1.5 rounded-2xl border border-black/5 dark:border-white/5 backdrop-blur-xl">
-              {['personal', 'hackathon'].map((cat) => (
+           <div className="inline-flex bg-black/5 dark:bg-white/5 p-1.5 rounded-2xl border border-black/5 dark:border-white/5 backdrop-blur-xl mb-8">
+              {['personal', 'hackathon', 'leetcode'].map((cat) => (
                 <button
                   key={cat}
                   onClick={() => { setActiveCategory(cat); setVisibleCount(3); }}
@@ -392,10 +421,38 @@ export const Projects = () => {
                   )}
                   data-cursor="pointer"
                 >
-                  {cat} Projects
+                  {cat === 'leetcode' ? 'Leetcode Directory' : `${cat} Projects`}
                 </button>
               ))}
            </div>
+
+           {/* Sub Categories for Personal Projects */}
+           <AnimatePresence>
+             {activeCategory === 'personal' && (
+               <motion.div 
+                 initial={{ opacity: 0, height: 0, y: -10 }}
+                 animate={{ opacity: 1, height: 'auto', y: 0 }}
+                 exit={{ opacity: 0, height: 0, y: -10 }}
+                 className="flex flex-wrap justify-center gap-3 overflow-hidden"
+               >
+                 {['Full Stack', 'Frontend Clones', 'Backend Projects', 'Apps'].map((subCat) => (
+                   <button
+                     key={subCat}
+                     onClick={() => { setActiveSubCategory(subCat); setVisibleCount(3); }}
+                     className={cn(
+                       "px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all border cursor-none",
+                       activeSubCategory === subCat
+                         ? "bg-primary text-white border-primary shadow-lg shadow-primary/20"
+                         : "bg-transparent border-black/10 dark:border-white/10 text-black/60 dark:text-white/60 hover:border-primary/50 hover:text-primary"
+                     )}
+                     data-cursor="pointer"
+                   >
+                     {subCat}
+                   </button>
+                 ))}
+               </motion.div>
+             )}
+           </AnimatePresence>
         </div>
 
         {/* Dynamic Responsive Projects Grid */}

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { ExternalLink, Figma as FigmaIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const mockFigma = [
+const figmaDesigns = [
   { 
     id: 1, 
     title: 'ElectroSell- A Figma Creation', 
@@ -121,7 +121,7 @@ export const Figma = () => {
            className="flex gap-8 overflow-x-auto no-scrollbar pb-12 cursor-none snap-x snap-mandatory"
            whileTap={{ cursor: 'grabbing' }}
         >
-          {mockFigma.map((design) => (
+          {figmaDesigns.map((design) => (
             <div key={design.id} className="min-w-[300px] md:min-w-[500px] snap-center">
                <FigmaCard design={design} />
             </div>

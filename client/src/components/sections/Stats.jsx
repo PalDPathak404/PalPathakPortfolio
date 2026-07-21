@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Github, Code2, Linkedin, ExternalLink, GitFork, Star, Users, Trophy, Target, TrendingUp, BookOpen, Sparkles } from 'lucide-react';
 import { cn } from '../../lib/utils.js';
 
-// Generate mock contribution data (GitHub-style grid)
+// Generate contribution data (GitHub-style grid)
 const generateContributionData = () => {
   const data = [];
   for (let i = 0; i < 84; i++) {
