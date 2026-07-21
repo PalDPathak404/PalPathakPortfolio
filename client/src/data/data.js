@@ -127,20 +127,6 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p12',
-    title: 'Fitness Tracker App',
-    description: 'A cross-platform mobile application for tracking workouts and nutrition.',
-    longDescription: 'This mobile application is built with React Native. It integrates with health APIs, offers personalized workout plans, and features a sleek mobile UI.',
-    category: 'personal',
-    subCategory: 'Apps',
-    tags: ['React Native', 'Firebase', 'Redux'],
-    thumbnail: 'https://images.unsplash.com/photo-1526502619053-cfdc4288d011?q=80&w=1200&auto=format&fit=crop',
-    githubUrl: 'https://github.com/PalDPathak404/fitness-app',
-    liveUrl: 'https://fitness-app.example.com',
-    youtubeUrl: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-    featured: false
-  },
-  {
     _id: 'p13',
     title: 'Smart Field Survey & Inspection App',
     description: 'A React Native and Expo application designed for efficient field data collection. Features survey creation, camera integration, live GPS location, contact management, clipboard utilities, and survey history, all within a clean, modern mobile interface powered by native Expo APIs.',
