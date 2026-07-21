@@ -16,6 +16,19 @@ export const projectsData = [
   },
   {
     _id: 'p2',
+    title: 'Avenir AI — AI Resume Gap Analyzer & Mock Interview Coach',
+    description: 'AI-powered Resume Gap Analyzer & Mock Interview Coach that helps students and job seekers identify skill gaps, generate personalized preparation plans, and practice targeted interviews for specific roles.',
+    longDescription: 'Avenir AI helps students and job seekers prepare for specific roles by comparing their resume against a job description, identifying missing skills and experience, generating personalized preparation roadmaps, and conducting AI-powered mock interviews tailored to those gaps. Uses local AI models through Ollama, ensuring privacy, offline capability, and no dependency on paid AI APIs.',
+    category: 'personal',
+    subCategory: 'Full Stack',
+    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Ollama', 'Tailwind CSS', 'Vite', 'JWT'],
+    thumbnail: 'https://i.imgur.com/y9z6C1e.png',
+    githubUrl: 'https://github.com/Kumar-Deepak-DEV/Avenir_AI',
+    liveUrl: 'https://avenir-ai-zeta.vercel.app',
+    featured: true
+  },
+  {
+    _id: 'p3',
     title: 'Golem Frontend Clone',
     description: 'A frontend clone of the Golem Website, built with HTML & CSS.',
     longDescription: 'I recreated the Golem website using HTML and CSS. The project features a responsive design, smooth scrolling, and a modern, visually appealing interface. It includes a navigation bar, hero section, features section, and a footer, all designed to mimic the original website\'s aesthetic.',
@@ -29,7 +42,7 @@ export const projectsData = [
     featured: true
   },
   {
-    _id: 'p3',
+    _id: 'p4',
     title: 'GOGUnlocked',
     description: 'A frontend clone of the GOGUnlocked Website, built with HTML & CSS.',
     longDescription: 'I recreated the GOGUnlocked website using HTML and CSS. The project features a responsive design, smooth scrolling, and a modern, visually appealing interface. It includes a navigation bar, hero section, features section, and a footer, all designed to mimic the original website\'s aesthetic.',
@@ -43,7 +56,7 @@ export const projectsData = [
     featured: true
   },
   {
-    _id: 'p4',
+    _id: 'p5',
     title: 'Venture Board Games',
     description: 'A frontend clone of the Venture Board Games Website, built with HTML & CSS.',
     longDescription: 'I recreated the Venture Board Games website using HTML and CSS. The project features a responsive design, smooth scrolling, and a modern, visually appealing interface. It includes a navigation bar, hero section, features section, and a footer, all designed to mimic the original website\'s aesthetic.',
@@ -57,7 +70,7 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p5',
+    _id: 'p6',
     title: 'BigBasket Clone',
     description: 'A frontend clone of the BigBasket Website, built with HTML & CSS.',
     longDescription: 'I recreated the BigBasket website using HTML and CSS. The project features a responsive design, smooth scrolling, and a modern, visually appealing interface. It includes a navigation bar, hero section, features section, and a footer, all designed to mimic the original website\'s aesthetic.',
@@ -71,7 +84,7 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p6',
+    _id: 'p7',
     title: 'GrowFitter Clone',
     description: 'A frontend clone of the GrowFitter Website, built with HTML & CSS.',
     longDescription: 'I recreated the GrowFitter website using HTML and CSS. The project features a responsive design, smooth scrolling, and a modern, visually appealing interface. It includes a navigation bar, hero section, features section, and a footer, all designed to mimic the original website\'s aesthetic.',
@@ -85,7 +98,7 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p9',
+    _id: 'p8',
     title: 'RapidResQ',
     description: 'Rapid ResQ is a smart emergency dispatch system that prevents call misrouting and overloads.',
     longDescription: 'Rapid ResQ is an intelligent emergency dispatch system that uses real-time geospatial routing to prevent misrouting and overloads while ensuring reliable connections through automated failovers during congestion..',
@@ -100,7 +113,7 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p10',
+    _id: 'p9',
     title: 'Knightly',
     description: 'A high-end, AI-powered humanized chess review and coaching platform designed specifically for beginner and intermediate players.',
     longDescription: 'Knightly is an AI-powered chess review and coaching platform that translates raw engine output into humanized, contextual coaching. Instead of seeing centipawn evaluations, beginners get explanations like "A serious opening error! This gives your opponent a decisive early advantage because you neglected center control." Features include asynchronous engine analysis, context-aware coaching, conversational AI chat, JWT authentication, search and discovery, and a premium dark-first SaaS interface.',
@@ -113,7 +126,7 @@ export const projectsData = [
     featured: true
   },
   {
-    _id: 'p11',
+    _id: 'p10',
     title: 'Student Management CRUD API',
     description: 'A RESTful API for managing student records with MongoDB and Express. This project demonstrates complete CRUD operations with comprehensive validation and error handling.',
     longDescription: 'A RESTful API for managing student records with MongoDB and Express. Features include full CRUD operations, MongoDB integration with Mongoose ODM, comprehensive input validation and error handling, role-based student classification (Student, Mentor, Admin), course tracking (MERN, Java, Python, Data Science), and bulk student creation support.',
@@ -126,7 +139,7 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p12',
+    _id: 'p11',
     title: 'Enhanced CRUD API with Express and MongoDB',
     description: 'A professional-grade RESTful API for managing user data with comprehensive input validation and error handling. Built with Express.js and MongoDB using Mongoose.',
     longDescription: 'An enhanced version of the standard CRUD API that includes robust validation mechanisms across all endpoints. Features include comprehensive validations, flexible field validation, batch operations, partial/complete updates (PATCH and PUT), clear error messages, MongoDB integration, security features (lowercase email storage, unique email enforcement), and role-based system (Student, Mentor, Admin).',
@@ -139,7 +152,7 @@ export const projectsData = [
     featured: false
   },
   {
-    _id: 'p13',
+    _id: 'p12',
     title: 'Smart Field Survey & Inspection App',
     description: 'A React Native and Expo application designed for efficient field data collection. Features survey creation, camera integration, live GPS location, contact management, clipboard utilities, and survey history, all within a clean, modern mobile interface powered by native Expo APIs.',
     longDescription: 'A full-featured mobile application built with React Native and Expo that streamlines field surveys and inspection workflows. The app leverages native device capabilities including Camera, Location, Contacts, and Clipboard APIs to enable efficient on-site data collection. It features survey creation, photo capture, GPS tagging, contact management, survey previews, searchable history, reusable components, and a modern navigation system powered by Expo Router with Bottom Tabs and Drawer Navigation. Designed with a responsive UI and scalable architecture, the project demonstrates practical integration of multiple native mobile APIs into a cohesive real-world application.',
