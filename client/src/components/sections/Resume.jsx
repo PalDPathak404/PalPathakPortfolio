@@ -36,7 +36,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
 
                  <div className="flex items-center space-x-4">
                     <a 
-                       href="https://drive.google.com/file/d/16LPeo6L1EpQa_-Rf07YTQxBSKMHlYm-i/view?usp=sharing" 
+                       href="https://drive.google.com/file/d/1qCxemvSmWmH4OJen6_Xrc8xMfe-Af5n9/view?usp=sharing" 
                        target="_blank"
                        rel="noreferrer"
                        className="flex items-center space-x-2 px-6 py-2.5 bg-primary hover:bg-primary/95 text-white text-[10px] font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-primary/25 transition-all cursor-none"
@@ -59,7 +59,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
               <div className="flex-1 overflow-hidden bg-black/5 dark:bg-white/5 p-4 md:p-8">
                  <div className="h-full w-full bg-white shadow-2xl overflow-hidden rounded-2xl flex items-center justify-center text-black">
                       <iframe 
-                        src="https://drive.google.com/file/d/16LPeo6L1EpQa_-Rf07YTQxBSKMHlYm-i/preview" 
+                        src="https://drive.google.com/file/d/1qCxemvSmWmH4OJen6_Xrc8xMfe-Af5n9/preview" 
                         title="Resume PDF Viewer"
                         className="w-full h-full border-none"
                         allow="autoplay"
