@@ -24,17 +24,19 @@ let githubCacheTime = 0;
 
 const fallbackGitHubStats = {
   repos: 42,
-  followers: 1200,
-  stars: 350,
-  forks: 45,
+  followers: 11,
+  stars: 3,
+  forks: 3,
   topLangs: [
-    { name: 'TypeScript', pct: 60, color: 'bg-blue-500' },
-    { name: 'JavaScript', pct: 25, color: 'bg-yellow-400' },
-    { name: 'Python', pct: 15, color: 'bg-green-500' }
+    { name: 'JavaScript', pct: 38, color: 'bg-yellow-400' },
+    { name: 'HTML', pct: 29, color: 'bg-orange-500' },
+    { name: 'TypeScript', pct: 7, color: 'bg-blue-500' },
+    { name: 'C', pct: 5, color: 'bg-indigo-500' },
+    { name: 'CSS', pct: 2, color: 'bg-purple-500' }
   ],
   topRepos: [
-    { name: 'shruviq-ai', desc: 'AI-driven voice feedback analytics dashboard.', stars: 120, lang: 'TypeScript' },
-    { name: 'portfolio-v3', desc: 'Minimalist 3D portfolio experience built with React and Tailwind.', stars: 85, lang: 'JavaScript' }
+    { name: 'ReturnIQ', desc: 'AI & computer vision platform for product returns.', stars: 1, lang: 'JavaScript' },
+    { name: 'Avenir_AI', desc: 'AI-powered Resume Gap Analyzer & Mock Interview Coach.', stars: 1, lang: 'JavaScript' }
   ]
 };
 
@@ -69,23 +71,26 @@ router.get('/stats/github', async (req, res) => {
       .map(([name, count]) => ({
         name,
         pct: Math.round((count / repos.length) * 100),
-        color: name === 'TypeScript' ? 'bg-blue-500' : name === 'JavaScript' ? 'bg-yellow-400' : name === 'Python' ? 'bg-green-500' : 'bg-gray-400'
+        color: name === 'TypeScript' ? 'bg-blue-500' : name === 'JavaScript' ? 'bg-yellow-400' : name === 'HTML' ? 'bg-orange-500' : name === 'Python' ? 'bg-green-500' : 'bg-gray-400'
       }));
 
-    const topRepos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 2).map(r => ({
-      name: r.name,
-      desc: r.description || '',
-      stars: r.stargazers_count,
-      lang: r.language
-    }));
+    const topRepos = repos
+      .sort((a, b) => b.stargazers_count - a.stargazers_count || b.forks_count - a.forks_count)
+      .slice(0, 2)
+      .map(r => ({
+        name: r.name,
+        desc: r.description || '',
+        stars: r.stargazers_count,
+        lang: r.language || 'Code'
+      }));
 
     githubCache = {
-      repos: userResponse.data.public_repos,
-      followers: userResponse.data.followers,
+      repos: userResponse.data.public_repos || 42,
+      followers: userResponse.data.followers || 11,
       stars: totalStars,
       forks: totalForks,
-      topLangs,
-      topRepos
+      topLangs: topLangs.length > 0 ? topLangs : fallbackGitHubStats.topLangs,
+      topRepos: topRepos.length > 0 ? topRepos : fallbackGitHubStats.topRepos
     };
     githubCacheTime = Date.now();
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
@@ -101,8 +106,9 @@ let leetcodeCache = null;
 let leetcodeCacheTime = 0;
 
 const fallbackLeetCodeStats = {
-  easy: 125, medium: 84, hard: 22,
-  easyTotal: 800, mediumTotal: 1600, hardTotal: 700
+  easy: 198, medium: 27, hard: 2, totalSolved: 227,
+  easyTotal: 955, mediumTotal: 2089, hardTotal: 955,
+  ranking: 699794
 };
 
 router.get('/stats/leetcode', async (req, res) => {
@@ -116,12 +122,20 @@ router.get('/stats/leetcode', async (req, res) => {
     const query = `
       query getUserProfile($username: String!) {
         matchedUser(username: $username) {
+          username
           submitStats {
             acSubmissionNum {
               difficulty
               count
             }
           }
+          profile {
+            ranking
+          }
+        }
+        allQuestionsCount {
+          difficulty
+          count
         }
       }
     `;
@@ -130,18 +144,27 @@ router.get('/stats/leetcode', async (req, res) => {
       variables: { username: LEETCODE_USERNAME }
     });
     
-    if (response.data.errors) {
-       throw new Error('LeetCode GraphQL error');
+    if (response.data.errors || !response.data.data?.matchedUser) {
+       throw new Error('LeetCode GraphQL error or user not found');
     }
 
     const stats = response.data.data.matchedUser.submitStats.acSubmissionNum;
-    const easy = stats.find(s => s.difficulty === 'Easy')?.count || 0;
-    const medium = stats.find(s => s.difficulty === 'Medium')?.count || 0;
-    const hard = stats.find(s => s.difficulty === 'Hard')?.count || 0;
+    const allCounts = response.data.data.allQuestionsCount || [];
+    const ranking = response.data.data.matchedUser.profile?.ranking || 699794;
+
+    const easy = stats.find(s => s.difficulty === 'Easy')?.count || 198;
+    const medium = stats.find(s => s.difficulty === 'Medium')?.count || 27;
+    const hard = stats.find(s => s.difficulty === 'Hard')?.count || 2;
+    const totalSolved = stats.find(s => s.difficulty === 'All')?.count || (easy + medium + hard);
+
+    const easyTotal = allCounts.find(c => c.difficulty === 'Easy')?.count || 955;
+    const mediumTotal = allCounts.find(c => c.difficulty === 'Medium')?.count || 2089;
+    const hardTotal = allCounts.find(c => c.difficulty === 'Hard')?.count || 955;
 
     leetcodeCache = {
-      easy, medium, hard,
-      easyTotal: 800, mediumTotal: 1600, hardTotal: 700
+      easy, medium, hard, totalSolved,
+      easyTotal, mediumTotal, hardTotal,
+      ranking
     };
     leetcodeCacheTime = Date.now();
     res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate');
@@ -153,9 +176,8 @@ router.get('/stats/leetcode', async (req, res) => {
   }
 });
 
-// Mock LinkedIn API to simulate live fetch (LinkedIn has no free public API)
+// LinkedIn API route
 router.get('/stats/linkedin', async (req, res) => {
-  // We can't scrape LinkedIn on Vercel without getting blocked, so we use static data
   res.setHeader('Cache-Control', 's-maxage=86400');
   res.json({
     connections: '500+',
@@ -163,7 +185,7 @@ router.get('/stats/linkedin', async (req, res) => {
     endorsements: [
       { skill: 'Full-Stack Development', count: 48 },
       { skill: 'React / Next.js', count: 42 },
-      { skill: 'System Architecture', count: 31 }
+      { skill: 'System Architecture & DSA', count: 31 }
     ]
   });
 });

@@ -98,13 +98,78 @@ const PlatformCard = ({ platform, delay = 0 }) => {
 };
 
 const GitHubContent = () => {
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState({
+    repos: 42,
+    followers: 11,
+    stars: 3,
+    forks: 3,
+    topLangs: [
+      { name: 'JavaScript', pct: 38, color: 'bg-yellow-400' },
+      { name: 'HTML', pct: 29, color: 'bg-orange-500' },
+      { name: 'TypeScript', pct: 7, color: 'bg-blue-500' },
+      { name: 'C', pct: 5, color: 'bg-indigo-500' },
+      { name: 'CSS', pct: 2, color: 'bg-purple-500' }
+    ],
+    topRepos: [
+      { name: 'ReturnIQ', desc: 'AI & computer vision platform for product returns.', stars: 1, lang: 'JavaScript' },
+      { name: 'Avenir_AI', desc: 'AI-powered Resume Gap Analyzer & Mock Interview Coach.', stars: 1, lang: 'JavaScript' }
+    ]
+  });
 
   useEffect(() => {
     fetch('/api/stats/github')
-      .then(res => res.json())
-      .then(data => setStats(data))
-      .catch(err => console.error(err));
+      .then(res => {
+        if (!res.ok) throw new Error('API response not ok');
+        return res.json();
+      })
+      .then(data => {
+        if (data && data.repos !== undefined) setStats(data);
+      })
+      .catch(async () => {
+        // Direct Client-Side Fallback fetch for GitHub API
+        try {
+          const uRes = await fetch('https://api.github.com/users/paldpathak404');
+          if (!uRes.ok) return;
+          const uData = await uRes.json();
+          const rRes = await fetch('https://api.github.com/users/paldpathak404/repos?per_page=100');
+          if (!rRes.ok) return;
+          const rData = await rRes.json();
+          
+          let totalStars = 0;
+          let totalForks = 0;
+          const languages = {};
+          rData.forEach(repo => {
+            totalStars += repo.stargazers_count || 0;
+            totalForks += repo.forks_count || 0;
+            if (repo.language) {
+              languages[repo.language] = (languages[repo.language] || 0) + 1;
+            }
+          });
+          const topLangs = Object.entries(languages)
+            .sort(([,a], [,b]) => b - a)
+            .slice(0, 5)
+            .map(([name, count]) => ({
+              name,
+              pct: Math.round((count / rData.length) * 100),
+              color: name === 'TypeScript' ? 'bg-blue-500' : name === 'JavaScript' ? 'bg-yellow-400' : name === 'HTML' ? 'bg-orange-500' : name === 'Python' ? 'bg-green-500' : 'bg-gray-400'
+            }));
+          const topRepos = rData
+            .sort((a, b) => b.stargazers_count - a.stargazers_count || b.forks_count - a.forks_count)
+            .slice(0, 2)
+            .map(r => ({ name: r.name, desc: r.description || '', stars: r.stargazers_count, lang: r.language || 'Code' }));
+
+          setStats({
+            repos: uData.public_repos || 42,
+            followers: uData.followers || 11,
+            stars: totalStars,
+            forks: totalForks,
+            topLangs,
+            topRepos
+          });
+        } catch (e) {
+          console.warn('GitHub client fallback fetch error:', e);
+        }
+      });
   }, []);
 
   return (
@@ -112,10 +177,10 @@ const GitHubContent = () => {
     {/* Stats Row */}
     <div className="grid grid-cols-4 gap-3">
       {[
-        { icon: BookOpen, value: stats?.repos || '0', label: 'Repos' },
-        { icon: Star, value: stats?.stars || '0', label: 'Stars' },
-        { icon: GitFork, value: stats?.forks || '0', label: 'Forks' },
-        { icon: Users, value: stats?.followers || '0', label: 'Followers' },
+        { icon: BookOpen, value: stats?.repos ?? '42', label: 'Repos' },
+        { icon: Star, value: stats?.stars ?? '3', label: 'Stars' },
+        { icon: GitFork, value: stats?.forks ?? '3', label: 'Forks' },
+        { icon: Users, value: stats?.followers ?? '11', label: 'Followers' },
       ].map((stat, i) => (
         <div key={i} className="text-center p-3 bg-black/5 dark:bg-white/5 border border-white/5 rounded-2xl hover:border-primary/25 transition-all">
           <stat.icon className="w-4 h-4 mx-auto mb-1.5 text-primary" />
@@ -129,7 +194,7 @@ const GitHubContent = () => {
     <div>
       <div className="flex justify-between items-center mb-2 text-[9px] font-mono font-bold uppercase tracking-widest">
         <span className="opacity-30">Contribution Activity</span>
-        <span className="text-primary">1,200+ this year</span>
+        <span className="text-primary">Active Contributor</span>
       </div>
       <ContributionGrid />
       <div className="flex items-center justify-end space-x-1.5 mt-3">
@@ -166,7 +231,7 @@ const GitHubContent = () => {
             <div key={repo.name} className="p-4 bg-black/5 dark:bg-white/5 border border-white/5 rounded-2xl hover:border-primary/20 transition-all flex flex-col justify-between">
               <div>
                 <span className="text-xs font-bold text-primary block mb-1">{repo.name}</span>
-                <span className="text-[10px] opacity-50 block mb-3 font-semibold line-clamp-2">{repo.desc}</span>
+                <span className="text-[10px] opacity-50 block mb-3 font-semibold line-clamp-2">{repo.desc || 'Open-source repository'}</span>
               </div>
               <div className="flex items-center space-x-3 text-[9px] opacity-40 font-mono">
                 <div className="flex items-center space-x-1">
@@ -186,18 +251,56 @@ const GitHubContent = () => {
 
 const LeetCodeContent = () => {
   const [stats, setStats] = useState({
-    easy: 80, easyTotal: 800,
-    medium: 55, mediumTotal: 1600,
-    hard: 15, hardTotal: 700
+    easy: 198, easyTotal: 955,
+    medium: 27, mediumTotal: 2089,
+    hard: 2, hardTotal: 955,
+    totalSolved: 227,
+    ranking: 699794
   });
 
   useEffect(() => {
     fetch('/api/stats/leetcode')
-      .then(res => res.json())
-      .then(data => {
-        if (!data.error) setStats(data);
+      .then(res => {
+        if (!res.ok) throw new Error('API error');
+        return res.json();
       })
-      .catch(err => console.error(err));
+      .then(data => {
+        if (data && !data.error && data.easy !== undefined) setStats(data);
+      })
+      .catch(async () => {
+        // Direct Client-Side Fallback fetch for LeetCode API
+        try {
+          const query = `
+            query getUserProfile($username: String!) {
+              matchedUser(username: $username) {
+                submitStats { acSubmissionNum { difficulty count } }
+                profile { ranking }
+              }
+              allQuestionsCount { difficulty count }
+            }
+          `;
+          const res = await fetch('https://leetcode.com/graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query, variables: { username: 'paldpathak404' } })
+          });
+          const json = await res.json();
+          if (json.data?.matchedUser) {
+            const subStats = json.data.matchedUser.submitStats.acSubmissionNum;
+            const allCounts = json.data.allQuestionsCount || [];
+            const easy = subStats.find(s => s.difficulty === 'Easy')?.count || 198;
+            const medium = subStats.find(s => s.difficulty === 'Medium')?.count || 27;
+            const hard = subStats.find(s => s.difficulty === 'Hard')?.count || 2;
+            const easyTotal = allCounts.find(c => c.difficulty === 'Easy')?.count || 955;
+            const mediumTotal = allCounts.find(c => c.difficulty === 'Medium')?.count || 2089;
+            const hardTotal = allCounts.find(c => c.difficulty === 'Hard')?.count || 955;
+            const ranking = json.data.matchedUser.profile?.ranking || 699794;
+            setStats({ easy, medium, hard, easyTotal, mediumTotal, hardTotal, totalSolved: easy + medium + hard, ranking });
+          }
+        } catch (e) {
+          console.warn('LeetCode fallback fetch error:', e);
+        }
+      });
   }, []);
 
   return (
@@ -215,7 +318,7 @@ const LeetCodeContent = () => {
           <div className="mt-2.5 h-1.5 bg-black/5 dark:bg-white/5 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
-              whileInView={{ width: `${(parseInt(diff.solved) / parseInt(diff.total)) * 100}%` }}
+              whileInView={{ width: `${(parseInt(diff.solved) / parseInt(diff.total || 1)) * 100}%` }}
               transition={{ duration: 1.2, delay: 0.2 + i * 0.1 }}
               className={cn('h-full rounded-full', diff.bg)}
             />
@@ -224,13 +327,13 @@ const LeetCodeContent = () => {
       ))}
     </div>
 
-    {/* Contest Rating */}
+    {/* Contest & Global Ranking */}
     <div className="p-6 bg-gradient-to-br from-black/5 to-white/5 border border-white/5 rounded-2xl relative overflow-hidden flex items-center justify-between">
       <div className="relative z-10">
-        <span className="text-[10px] font-mono opacity-50 uppercase tracking-widest font-bold block mb-1">Global Contest Rating</span>
-        <span className="text-3xl font-display font-black text-yellow-500">1,842</span>
+        <span className="text-[10px] font-mono opacity-50 uppercase tracking-widest font-bold block mb-1">Global LeetCode Rank</span>
+        <span className="text-3xl font-display font-black text-yellow-500">#{stats.ranking ? stats.ranking.toLocaleString() : '699,794'}</span>
         <span className="text-[10px] text-green-400 flex items-center mt-1 font-bold">
-          <TrendingUp className="w-3 h-3 mr-1" /> Top 8%
+          <TrendingUp className="w-3 h-3 mr-1" /> {stats.totalSolved || (stats.easy + stats.medium + stats.hard)} Problems Solved
         </span>
       </div>
       <Trophy className="w-16 h-16 text-yellow-500/20 relative z-10" />
@@ -242,15 +345,21 @@ const LeetCodeContent = () => {
 
 const LinkedInContent = () => {
   const [stats, setStats] = useState({
-    connections: '...',
-    impressions: '...',
-    endorsements: []
+    connections: '500+',
+    impressions: '10K+',
+    endorsements: [
+      { skill: 'Full-Stack Development', count: 48 },
+      { skill: 'React / Next.js', count: 42 },
+      { skill: 'System Architecture & DSA', count: 31 }
+    ]
   });
 
   useEffect(() => {
     fetch('/api/stats/linkedin')
       .then(res => res.json())
-      .then(data => setStats(data))
+      .then(data => {
+        if (data && data.connections) setStats(data);
+      })
       .catch(err => console.error(err));
   }, []);
 
@@ -304,7 +413,7 @@ export const Stats = () => {
     {
       title: 'LeetCode',
       username: '@paldpathak404',
-      href: 'https://leetcode.com/paldpathak404',
+      href: 'https://leetcode.com/u/paldpathak404',
       icon: Code2,
       brandColor: '#ffa116',
       bgColor: 'bg-[#282828]',
@@ -312,8 +421,8 @@ export const Stats = () => {
     },
     {
       title: 'LinkedIn',
-      username: 'in/palpathak404',
-      href: 'https://linkedin.com/in/palpathak404',
+      username: 'in/paldpathak',
+      href: 'https://linkedin.com/in/paldpathak',
       icon: Linkedin,
       brandColor: '#0a66c2',
       bgColor: 'bg-[#0a66c2]',
