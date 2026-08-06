@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, MapPin, Check, Loader2, MessageSquare, ArrowRight, Send, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Check, Loader2, MessageSquare, ArrowRight, Send, Sparkles } from 'lucide-react';
 import Lottie from 'lottie-react';
 import successAnimation from '../../assets/lottie/success.json';
 import emailjs from '@emailjs/browser';
@@ -95,6 +95,22 @@ export const Contact = () => {
                                         </span>
                                     </div>
                                 </button>
+
+                                <a
+                                    href="tel:+919909950612"
+                                    className="flex items-center group space-x-4 bg-black/5 dark:bg-white/5 border border-white/5 p-4 rounded-2xl hover:border-emerald-500/30 transition-all text-left"
+                                    data-cursor="pointer"
+                                >
+                                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                                        <Phone className="w-4 h-4 text-emerald-500" />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <span className="block text-[9px] font-mono uppercase tracking-widest opacity-40 font-bold">PHONE NUMBER</span>
+                                        <span className="text-sm md:text-base font-display font-bold group-hover:text-emerald-500 transition-colors block truncate text-black dark:text-white">
+                                            +91 9909950612
+                                        </span>
+                                    </div>
+                                </a>
 
                                 <div className="flex items-center space-x-4 bg-black/5 dark:bg-white/5 border border-white/5 p-4 rounded-2xl text-left">
                                     <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
