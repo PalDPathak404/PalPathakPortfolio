@@ -36,7 +36,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
 
                  <div className="flex items-center space-x-4">
                     <a 
-                       href="https://drive.google.com/file/d/1qCxemvSmWmH4OJen6_Xrc8xMfe-Af5n9/view?usp=sharing" 
+                       href="https://drive.google.com/file/d/10N1awN6o1QRRP-aZaUvvqzSt2_InY_sW/view?usp=sharing" 
                        target="_blank"
                        rel="noreferrer"
                        className="flex items-center space-x-2 px-6 py-2.5 bg-primary hover:bg-primary/95 text-white text-[10px] font-bold uppercase tracking-widest rounded-xl shadow-lg shadow-primary/25 transition-all cursor-none"
@@ -59,7 +59,7 @@ const ResumeModal = ({ isOpen, onClose }) => {
               <div className="flex-1 overflow-hidden bg-black/5 dark:bg-white/5 p-4 md:p-8">
                  <div className="h-full w-full bg-white shadow-2xl overflow-hidden rounded-2xl flex items-center justify-center text-black">
                       <iframe 
-                        src="https://drive.google.com/file/d/1qCxemvSmWmH4OJen6_Xrc8xMfe-Af5n9/preview" 
+                        src="https://drive.google.com/file/d/10N1awN6o1QRRP-aZaUvvqzSt2_InY_sW/preview" 
                         title="Resume PDF Viewer"
                         className="w-full h-full border-none"
                         allow="autoplay"
@@ -141,20 +141,28 @@ export const Resume = () => {
                     A highly comprehensive chronological catalog detailing my verified academic backgrounds, custom startup designs, production full-stack developments, and the competitive hackathons won.
                  </p>
                  
-                 <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+                 <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
                     <button 
                        id="resume-btn"
                        onClick={() => setIsResumeModalOpen(true)}
-                       className="group relative px-10 py-4.5 bg-primary hover:bg-primary/95 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full shadow-lg shadow-primary/25 overflow-hidden transition-all flex items-center justify-center space-x-3 w-full md:w-auto cursor-none"
+                       className="group relative px-8 py-4 bg-primary hover:bg-primary/95 text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full shadow-lg shadow-primary/25 overflow-hidden transition-all flex items-center justify-center space-x-3 w-full md:w-auto cursor-none"
                        data-cursor="pointer"
                     >
                        <Eye className="w-4 h-4" />
                        <span>Launch Interactive Resume</span>
                     </button>
                     
-                    <span className="text-[10px] uppercase tracking-[0.25em] opacity-40 font-mono italic">
-                       NO AUTO-DOWNLOAD TRIGGERED
-                    </span>
+                    <a
+                       href="https://drive.google.com/file/d/10N1awN6o1QRRP-aZaUvvqzSt2_InY_sW/view?usp=sharing"
+                       target="_blank"
+                       rel="noreferrer"
+                       onClick={(e) => e.stopPropagation()}
+                       className="px-6 py-4 border border-black/10 dark:border-white/10 hover:border-primary/50 text-black dark:text-white font-mono text-xs font-bold uppercase tracking-widest rounded-full transition-all flex items-center justify-center space-x-2 w-full md:w-auto cursor-none bg-white/5 dark:bg-white/5"
+                       data-cursor="pointer"
+                    >
+                       <Download className="w-4 h-4" />
+                       <span>Open Drive Link</span>
+                    </a>
                  </div>
               </div>
 

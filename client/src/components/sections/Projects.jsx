@@ -173,7 +173,7 @@ const ProjectModal = ({ project, onClose, onPrev, onNext }) => {
                 data-cursor="pointer"
               >
                 <Github className="w-4 h-4" />
-                <span>Repository</span>
+                <span>See GitHub</span>
               </a>
             )}
             {project.youtubeUrl && (
@@ -293,11 +293,12 @@ const ProjectCard = ({ project, onClick }) => {
                    href={project.githubUrl} 
                    target="_blank" 
                    rel="noreferrer"
-                   className="p-1 hover:text-primary text-black/50 dark:text-white/50 transition-colors cursor-none"
+                   className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/5 dark:bg-white/10 hover:bg-primary hover:text-white border border-black/10 dark:border-white/10 rounded-lg text-[9px] font-mono font-bold uppercase tracking-wider text-black/70 dark:text-white/70 transition-all cursor-none shrink-0"
                    onClick={(e) => e.stopPropagation()}
                    data-cursor="pointer"
                  >
-                   <Github className="w-4 h-4" />
+                   <Github className="w-3.5 h-3.5" />
+                   <span>See GitHub</span>
                  </a>
                )}
                {project.youtubeUrl && (

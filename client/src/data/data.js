@@ -7,11 +7,9 @@ export const projectsData = [
     category: 'hackathon',
     subCategory: 'Full Stack',
     tags: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Framer Motion'],
-    thumbnail: '',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1r1lSEflvQC3nYdt3fr0cj4HACrHapdai',
     githubUrl: 'https://github.com/PalDPathak404/ReturnIQ',
     liveUrl: 'https://returniq.vercel.app',
-    youtubeId: 'dQw4w9WgXcQ',
-    youtubeUrl: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
     featured: true
   },
   {
@@ -105,11 +103,9 @@ export const projectsData = [
     category: 'hackathon',
     subCategory: 'Full Stack',
     tags: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Framer Motion'],
-    thumbnail: '',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1t8gKPAS9zqKeVMHLf7QcVjsQyjJFvJGt',
     githubUrl: 'https://github.com/PalDPathak/RapidResQ',
     liveUrl: 'https://rapidresq-prime.vercel.app',
-    youtubeId: 'dQw4w9WgXcQ',
-    youtubeUrl: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
     featured: false
   },
   {

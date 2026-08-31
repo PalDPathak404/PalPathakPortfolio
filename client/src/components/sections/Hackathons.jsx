@@ -194,7 +194,7 @@ const HackathonModal = ({ hack, onClose }) => {
                    data-cursor="pointer"
                  >
                     <Github className="w-4 h-4" />
-                    <span>GitHub Repo</span>
+                    <span>See GitHub</span>
                  </a>
               )}
               {hack.demoUrl && (
@@ -316,11 +316,26 @@ export const Hackathons = () => {
                       </div>
                    </div>
 
-                   {/* Call to Action indicator */}
-                   <div className="group/btn flex items-center gap-3 text-[9px] font-mono font-bold uppercase tracking-widest text-primary whitespace-nowrap">
-                      <span>Explore Story</span>
-                      <div className="w-10 h-[1.5px] bg-primary group-hover/btn:w-16 transition-all" />
-                   </div>
+                    {/* Call to Action indicator */}
+                    <div className="flex items-center gap-4">
+                       {hack.repoUrl && (
+                         <a
+                           href={hack.repoUrl}
+                           target="_blank"
+                           rel="noreferrer"
+                           onClick={(e) => e.stopPropagation()}
+                           className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-black/10 dark:bg-white/10 hover:bg-primary hover:text-white border border-black/10 dark:border-white/10 rounded-xl text-[9px] font-mono font-bold uppercase tracking-wider text-black dark:text-white transition-all cursor-none"
+                           data-cursor="pointer"
+                         >
+                           <Github className="w-3.5 h-3.5" />
+                           <span>See GitHub</span>
+                         </a>
+                       )}
+                       <div className="group/btn flex items-center gap-3 text-[9px] font-mono font-bold uppercase tracking-widest text-primary whitespace-nowrap">
+                          <span>Explore Story</span>
+                          <div className="w-10 h-[1.5px] bg-primary group-hover/btn:w-16 transition-all" />
+                       </div>
+                    </div>
                 </div>
              </motion.div>
            ))}
